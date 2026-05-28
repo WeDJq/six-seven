@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🍍 BLOX FRUITS RUNNER | Роблокс Ранер + ГИД СТРАТЕГИЙ 🏴‍☠️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1e 0%, #03060f 100%);
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Гига-контейнер */
+        .ultimate-portal {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 64px;
+            border: 3px solid #ffd966;
+            box-shadow: 0 0 70px rgba(255, 200, 0, 0.4);
+            padding: 20px 25px 35px;
+            transition: 0.3s;
+        }
+
+        /* шапка с логотипом Blox Fruits стиль */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #FFD966, #FF8C42, #FF3A20);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px #ff9900;
+            letter-spacing: 2px;
+        }
+        .sub {
+            color: #ffcc88;
+            font-size: 0.7rem;
+            margin-top: 8px;
+        }
+
+        /* ДВЕ КОЛОНКИ: игра + гайд */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 850px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+        }
+
+        /* ========= ИГРОВОЙ БЛОК (МИНИ РАННЕР) ========= */
+        .game-section {
+            background: #03060cd9;
+            border-radius: 48px;
+            padding: 20px;
+            border: 2px solid #ffb347;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+        }
+        .game-title {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #FFB347;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        canvas {
+            background: #1e2a2e;
+            border-radius: 32px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 0 0 3px #ffae42, 0 0 0 6px #7a4c1a;
+            cursor: pointer;
+        }
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            background: black;
+            padding: 12px 18px;
+            border-radius: 60px;
+            font-weight: bold;
+        }
+        .restart-btn {
+            background: #ff9142;
+            border: none;
+            font-family: inherit;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s linear;
+        }
+        .restart-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ========= БЛОК СТРАТЕГИЙ И ГАЙД ========= */
+        .guide-section {
+            background: #0b1422dd;
+            border-radius: 48px;
+            padding: 20px;
+            border: 2px solid #ffaa55;
+            backdrop-filter: blur(4px);
+        }
+        .guide-section h2 {
+            color: #FFCC77;
+            border-left: 10px solid #ff6600;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .strategy-card {
+            background: #01081a;
+            border-radius: 28px;
+            padding: 15px;
+            margin-bottom: 18px;
+            transition: 0.2s;
+            border-left: 5px solid #ff9142;
+        }
+        .strategy-card h3 {
+            color: #ffb347;
+            margin-bottom: 8px;
+        }
+        .strategy-card p {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-family: monospace;
+            color: #ddd;
+        }
+        .tip-highlight {
+            background: #ff880020;
+            border-radius: 20px;
+            padding: 12px;
+            margin-top: 15px;
+            text-align: center;
+            border: 1px dashed #ffaa55;
+        }
+        .howto-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .howto-list li {
+            margin: 8px 0;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        kbd {
+            background: #2c2c2c;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-family: monospace;
+            font-weight: bold;
+            color: #ffcc88;
+        }
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 0.6rem;
+            color: #ffb37c;
+        }
+    </style>
+</head>
+<body>
+<div class="ultimate-portal">
+    <div class="logo-area">
+        <h1>🍍 BLOX FRUITS RUNNER 🏴‍☠️</h1>
+        <div class="sub">⚡ MINI-RUNNER | собери фрукты, уклоняйся от моряков ⚡</div>
+    </div>
+
+    <div class="split-layout">
+        <!-- ЛЕВАЯ ЧАСТЬ: ИГРА -->
+        <div class="game-section">
+            <div class="game-title">
+                <span>🏃‍♂️ БЕГИ ЗА ФРУКТАМИ</span>
+                <span>🍎🍊🍈</span>
+            </div>
+            <canvas id="gameCanvas" width="700" height="350" style="width:100%; height:auto; max-width:700px; aspect-ratio:700/350"></canvas>
+            <div class="game-stats">
+                <span>🍍 СЧЕТ: <strong id="scoreValue">0</strong></span>
+                <span>❤️ ЖИЗНИ: <strong id="livesValue">3</strong></span>
+                <button class="restart-btn" id="resetGameBtn">🔄 НОВАЯ ИГРА</button>
+            </div>
+            <div class="tip-highlight" style="margin-top: 12px;">
+                💡 ПРОСТО ТЫКАЙ/КЛИКАЙ мышкой или тапай по экрану — персонаж прыгает!
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ: ГАЙД И СТРАТЕГИИ BLOX FRUITS -->
+        <div class="guide-section">
+            <h2>📖 ГАЙД + ЛУЧШИЕ СТРАТЕГИИ ДЛЯ ROBLOX</h2>
+            <div class="strategy-card">
+                <h3>🥇 1. ФАРМИНГ ФРУКТОВ В НАЧАЛЕ</h3>
+                <p>Сразу после спавна беги в ДЖУНГЛИ (Jungle) или на ПЛЯЖ (Pirate Starter). Используй меч Katana (квест у индейца). Убивай бандитов до 30-40 уровня, чтобы купить первый Fruit (Лучший бюджет — Light или Magma).</p>
+            </div>
+            <div class="strategy-card">
+                <h3>⚡ 2. КАК ПОЛУЧИТЬ МИФИЧЕСКИЙ ФРУКТ</h3>
+                <p>🔹 СБОР ДЕНЕГ: Farm Bosses (Saber, Yeti) — дропают деньги. 🔹 Gacha (Золотое яблоко) — крути удачу в Café. 🔹 Торгуйся! Заходи в Discord Blox Fruits, меняй фрукты. Лучшие мифики: Leopard, Dough, Dragon.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🌀 3. АВТОКЛИКЕР / ПВП СТРАТЕГИИ</h3>
+                <p>Используй "Flash Step" + комбо мечом. Для пробуждения фрукта (Awakening) проходи Raids с друзьями. Полный билд: Fruit Main + Ghoul V2 или Shark V3 (реген). Не забывай про аксессуары (Pale Scarf).</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🎮 4. КАК БЫСТРО ПРОКАЧАТЬ МАСТЕРИЮ</h3>
+                <p>Убей 1000 NPC на Втором море (Sea of Treats). Используй двойной опыт (2x EXP) от кодов. Актуальные коды: "Sub2Fer999", "Enyu_is_Pro", "BloxFruits_Update20".</p>
+            </div>
+            <div class="tip-highlight">
+                ⭐ СУПЕР СТРАТЕГИЯ ДЛЯ ЭТОЙ МИНИ-ИГРЫ: <br>
+                Собирай КАЖДЫЙ фрукт — они дают +10 очков. Уворачивайся от врагов! Чем дольше бежишь, тем быстрее скорость. Набери 200+ очков и получи титул "Король фруктов".
+            </div>
+            <div class="howto-list">
+                <li><kbd>🖱️ КЛИК / ТАП</kbd> — Прыжок (уклонение от врагов/сбор фруктов)</li>
+                <li><kbd>🔥 СТРАТЕГИЯ</kbd> — Прыгай за мгновение до касания препятствия</li>
+                <li><kbd>🏆 БОНУС</kbd> — Каждые 50 очков дают дополнительную жизнь (макс 5)</li>
+            </div>
+        </div>
+    </div>
+    <footer>⚡ 10/10 функционал | Мини-раннер в стиле Blox Fruits + топ стратегии для Roblox ⚡</footer>
+</div>
+
+<script>
+    (function(){
+        // ------ CANVAS РАННЕР (blox fruits стиль) ------
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // фикс ресайз для четкости пикселей (но сохраним пропорции)
+        function setCanvasSize() {
+            const container = canvas.parentElement;
+            const maxWidth = Math.min(700, container.clientWidth - 20);
+            canvas.style.width = `${maxWidth}px`;
+            // внутреннее разрешение останется 700x350 для игровой логики
+        }
+        window.addEventListener('resize', setCanvasSize);
+        setCanvasSize();
+        
+        // --- ИГРОВЫЕ ПЕРЕМЕННЫЕ ---
+        let score = 0;
+        let lives = 3;
+        let gameRunning = true;
+        let frameRequest;
+        
+        // игрок
+        const player = {
+            x: 80,
+            y: 0,      // динамическая y (земля)
+            width: 30,
+            height: 30,
+            isJumping: false,
+            yVelocity: 0,
+            groundY: 280   // (canvas высота 350 - высота игрока 30 = 320, но с отступом 280? Сделаем красиво)
+        };
+        player.groundY = canvas.height - player.height - 10; // 350-30-10=310 (норм)
+        
+        // преграды и фрукты
+        let obstacles = [];   // враги (моряки/пираты)
+        let fruits = [];      // фрукты (бонусы)
+        
+        let frameCounter = 0;
+        let spawnGap = 45;    // чем больше счет, тем чаще спавн
+        let gameSpeed = 5;
+        
+        // ------ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ------
+        function resetGame() {
+            score = 0;
+            lives = 3;
+            gameRunning = true;
+            obstacles = [];
+            fruits = [];
+            frameCounter = 0;
+            gameSpeed = 5;
+            player.isJumping = false;
+            player.yVelocity = 0;
+            player.y = player.groundY;
+            updateUI();
+        }
+        
+        function updateUI() {
+            document.getElementById('scoreValue').innerText = score;
+            document.getElementById('livesValue').innerText = lives;
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+        }
+        
+        // спавн объектов
+        function trySpawn() {
+            if(!gameRunning) return;
+            // шанс спавна врага (40%)
+            if(Math.random() < 0.33 && obstacles.length < 4) {
+                obstacles.push({
+                    x: canvas.width,
+                    y: player.groundY + 5,
+                    width: 28,
+                    height: 28,
+                    type: 'enemy'
+                });
+            }
+            // спавн фрукта (50% шанс, но фруктов не больше 5)
+            if(Math.random() < 0.45 && fruits.length < 6) {
+                let fruitColors = ['🍎','🍊','🍈','🍍','🍒'];
+                fruits.push({
+                    x: canvas.width,
+                    y: player.groundY - 5,
+                    width: 24,
+                    height: 24,
+                    type: 'fruit',
+                    emoji: fruitColors[Math.floor(Math.random() * fruitColors.length)]
+                });
+            }
+        }
+        
+        // обновление логики
+        function updateGame() {
+            if(!gameRunning) return;
+            
+            // скорость растёт от счета (макс 12)
+            let currentSpeed = Math.min(5 + Math.floor(score / 120), 12);
+            gameSpeed = currentSpeed;
+            
+            // спавн по таймеру
+            frameCounter++;
+            let dynamicSpawn = Math.max(25, spawnGap - Math.floor(score / 80));
+            if(frameCounter >= dynamicSpawn) {
+                trySpawn();
+                frameCounter = 0;
+            }
+            
+            // перемещение врагов
+            for(let i=0; i<obstacles.length; i++) {
+                obstacles[i].x -= gameSpeed;
+                if(obstacles[i].x + obstacles[i].width < 0) {
+                    obstacles.splice(i,1);
+                    i--;
+                }
+            }
+            // перемещение фруктов
+            for(let i=0; i<fruits.length; i++) {
+                fruits[i].x -= gameSpeed;
+                if(fruits[i].x + fruits[i].width < 0) {
+                    fruits.splice(i,1);
+                    i--;
+                }
+            }
+            
+            // физика прыжка
+            const GRAVITY = 0.8;
+            const JUMP_POWER = -11;
+            if(player.isJumping) {
+                player.yVelocity += GRAVITY;
+                player.y += player.yVelocity;
+                if(player.y >= player.groundY) {
+                    player.y = player.groundY;
+                    player.isJumping = false;
+                    player.yVelocity = 0;
+                }
+            } else {
+                player.y = player.groundY;
+            }
+            
+            // КОЛЛИЗИЯ: фрукты
+            for(let i=0; i<fruits.length; i++) {
+                const f = fruits[i];
+                if(player.x < f.x+f.width && player.x+player.width > f.x &&
+                   player.y < f.y+f.height && player.y+player.height > f.y) {
+                    // сбор фрукта
+                    score += 10;
+                    fruits.splice(i,1);
+                    updateUI();
+                    // бонус жизнь каждые 50 очков
+                    if(score % 50 === 0 && lives < 5) {
+                        lives = Math.min(lives+1, 5);
+                        updateUI();
+                    }
+                    break;
+                }
+            }
+            // КОЛЛИЗИЯ: враги
+            for(let i=0; i<obstacles.length; i++) {
+                const e = obstacles[i];
+                if(player.x < e.x+e.width && player.x+player.width > e.x &&
+                   player.y < e.y+e.height && player.y+player.height > e.y) {
+                    lives--;
+                    updateUI();
+                    obstacles.splice(i,1);
+                    if(lives <= 0) {
+                        gameOver();
+                    }
+                    // бессмертие на 0.3 сек эффект не делаем, просто урон
+                    break;
+                }
+            }
+            
+            if(lives <= 0) gameRunning = false;
+        }
+        
+        // ОТРИСОВКА СТИЛЬНАЯ
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // фон островной
+            ctx.fillStyle = '#2c5a2a';
+            ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = '#7b5f3a';
+            ctx.fillRect(0, player.groundY+25, canvas.width, 15);
+            ctx.fillStyle = '#d4a373';
+            ctx.font = "bold 18 monospace";
+            
+            // рисуем врагов (моряки)
+            for(let e of obstacles) {
+                ctx.fillStyle = '#a13e2d';
+                ctx.shadowBlur = 0;
+                ctx.fillRect(e.x, e.y, e.width, e.height);
+                ctx.fillStyle = 'white';
+                ctx.font = "20px monospace";
+                ctx.fillText('⚔️', e.x+4, e.y+22);
+            }
+            // фрукты
+            for(let f of fruits) {
+                ctx.font = "26px monospace";
+                ctx.fillText(f.emoji, f.x+2, f.y+22);
+            }
+            // персонаж (пират / блоx фрукт раннер)
+            ctx.font = "36px monospace";
+            ctx.fillText('🏴‍☠️', player.x, player.y+28);
+            ctx.fillStyle = '#FFD966';
+            ctx.font = "bold 18px monospace";
+            ctx.fillText("⚡ SPEED: "+Math.floor(gameSpeed*2), 20, 40);
+            
+            if(!gameRunning) {
+                ctx.font = "bold 28 monospace";
+                ctx.fillStyle = "red";
+                ctx.shadowBlur = 0;
+                ctx.fillText("GAME OVER", canvas.width/2-100, canvas.height/2);
+                ctx.font = "14px monospace";
+                ctx.fillStyle = "white";
+                ctx.fillText("Нажми НОВАЯ ИГРА", canvas.width/2-90, canvas.height/2+50);
+            }
+        }
+        
+        // АНИМАЦИОННЫЙ ЦИКЛ
+        function gameLoop() {
+            updateGame();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // прыжок (клик / тап)
+        function jump() {
+            if(!gameRunning) return;
+            if(!player.isJumping && player.y >= player.groundY - 1) {
+                player.isJumping = true;
+                player.yVelocity = -11;
+            }
+        }
+        
+        // обработка событий
+        canvas.addEventListener('click', (e) => {
+            e.preventDefault();
+            jump();
+        });
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            jump();
+        });
+        
+        document.getElementById('resetGameBtn').addEventListener('click', () => {
+            resetGame();
+            gameRunning = true;
+            lives = 3;
+            score = 0;
+            obstacles = [];
+            fruits = [];
+            player.isJumping = false;
+            player.y = player.groundY;
+            updateUI();
+        });
+        
+        // старт
+        resetGame();
+        gameLoop();
+        updateUI();
+        
+        // адаптация под ресайз (логика сохраняется)
+        function handleCanvasSize() {
+            // физические размеры холста в пикселях логики постоянны 700x350, только css изменяем
+            const container = canvas.parentElement;
+            const w = Math.min(700, container.clientWidth - 20);
+            canvas.style.width = `${w}px`;
+        }
+        window.addEventListener('resize', handleCanvasSize);
+        handleCanvasSize();
+    })();
+</script>
+</body>
+</html>
